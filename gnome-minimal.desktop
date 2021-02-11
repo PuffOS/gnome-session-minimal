@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=XSession
+Exec=/usr/bin/startgnome
+TryExec=/usr/bin/xterm
+DesktopNames=gnome-minimal
+Name=gnome-minimal
+Comment=xterm

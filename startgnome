@@ -1,0 +1,12 @@
+#!/bin/bash
+NAME=gnome
+cat /usr/share/gnome-session/sessions/$NAME.session | grep -i  "RequiredComponents" | sed "s/.*=//g" | sed "s/;/\n/g" | while read line ; do
+	if [ -f /usr/share/applications/$line.desktop ] ; then
+		$(cat /usr/share/applications/$line.desktop | grep "Exec=" | sed "s/^Exec=//g") &	
+	elif [ -f /etc/xdg/autostart/$line.desktop ] ; then
+		$(cat /etc/xdg/autostart/$line.desktop | grep "Exec=" | sed "s/^Exec=//g") &
+	else
+		echo $line Not found
+	fi
+done
+exec sleep inf
